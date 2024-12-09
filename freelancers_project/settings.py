@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
-<<<<<<< HEAD
 import environ
 
 env = environ.Env()
@@ -22,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = env.bool('DEBUG', default=False)  # Ensure DEBUG is False in production
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['deityomfreelancer.com', 'www.deityomfreelancer.com'])
-=======
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,8 +39,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
->>>>>>> 4051860b9adf437db7c2573a2ab446e900769f5e
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -90,7 +88,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'freelancers_project.wsgi.application'
 
-<<<<<<< HEAD
+
 # Database configuration
 DATABASES = {
     'default': {
@@ -104,7 +102,7 @@ DATABASES = {
 }
 
 # Email configuration
-=======
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -180,7 +178,7 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 
 
 # settings.py
->>>>>>> 4051860b9adf437db7c2573a2ab446e900769f5e
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -189,7 +187,7 @@ EMAIL_HOST_USER = 'deityommarketing@gmail.com'  # Replace with your Gmail addres
 EMAIL_HOST_PASSWORD = 'xkfi zjud pqjp lucd'  # Replace with your Gmail password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-<<<<<<< HEAD
+
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -213,14 +211,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Authentication and User model
-=======
->>>>>>> 4051860b9adf437db7c2573a2ab446e900769f5e
+
 AUTH_USER_MODEL = 'freelancers_app.User'
 
 # settings.py
 SECURE_SSL_REDIRECT = False
 
-<<<<<<< HEAD
+
 # Security settings (for production)
 SECURE_SSL_REDIRECT = True  # Redirect all HTTP to HTTPS
 SECURE_HSTS_SECONDS = 3600  # Enable HTTP Strict Transport Security
@@ -233,6 +230,4 @@ SESSION_COOKIE_SECURE = True  # Ensure session cookies are only sent over HTTPS
 
 # Ensure .env is in the correct directory and loaded
 environ.Env.read_env(str(BASE_DIR / '.env'))  # Ensure .env is in the correct directory
-=======
 
->>>>>>> 4051860b9adf437db7c2573a2ab446e900769f5e
