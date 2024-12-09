@@ -1,17 +1,15 @@
 import os
 from pathlib import Path
-
-
 import environ
+
 env = environ.Env()
 environ.Env.read_env()  # This should be correctly loading the .env file
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = env.bool('DEBUG', default=False)  # Ensure DEBUG is False in production
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['your-domain.com', 'www.your-domain.com'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['deityomfreelancer.com', 'www.deityomfreelancer.com'])
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -58,27 +56,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'freelancers_project.wsgi.application'
 
-
-import os
-
-from dotenv import load_dotenv
-load_dotenv()
-
-
+# Database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        'HOST': os.getenv('DB_HOST'),  # Ensure this is correct; might need to be set to Hostinger DB host if not local
+        'PORT': os.getenv('DB_PORT', default='5432'),  # Ensure the port is correct (default 5432 for PostgreSQL)
     }
 }
 
-
-
-
+# Email configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -87,6 +77,7 @@ EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -94,29 +85,34 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
+# Localization settings
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Static files (CSS, JavaScript, images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For production, static files should be collected here
 
+# Media files (uploads)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Authentication and User model
 AUTH_USER_MODEL = 'freelancers_app.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_SECONDS = 3600
-SECURE_HSTS_PRELOAD = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+# Security settings (for production)
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP to HTTPS
+SECURE_HSTS_SECONDS = 3600  # Enable HTTP Strict Transport Security
+SECURE_HSTS_PRELOAD = True  # Enable preload for HSTS
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply to all subdomains
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent sniffing of content types
+SECURE_BROWSER_XSS_FILTER = True  # Enable the XSS filter
+CSRF_COOKIE_SECURE = True  # Ensure CSRF cookies are only sent over HTTPS
+SESSION_COOKIE_SECURE = True  # Ensure session cookies are only sent over HTTPS
 
+# Ensure .env is in the correct directory and loaded
 environ.Env.read_env(str(BASE_DIR / '.env'))  # Ensure .env is in the correct directory
-
