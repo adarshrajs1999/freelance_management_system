@@ -1,0 +1,43 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+myenv/
+venv/
+env/
+.venv/
+
+# Django stuff:
+*.log              # Django logs
+*.pot              # Translation files
+*.pyc              # Compiled Python files
+*.pyo              # Optimized Python files
+*.sqlite3          # SQLite databases (if you're using SQLite for local dev)
+db.sqlite3         # SQLite database file
+media/             # Uploaded files (ignore this on git if hosting separately)
+static/            # Static files directory
+
+# VSCode and IDE settings
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+
+# PyCharm or JetBrains IDEs
+.idea/
+
+# Environment variables (ensure sensitive info is excluded from version control)
+.env
